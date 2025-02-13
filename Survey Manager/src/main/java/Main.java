@@ -1,4 +1,5 @@
 import java.util.*;
+import org.apache.commons.lang3.*;
 
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
@@ -87,6 +88,10 @@ public class Main {
         System.out.println("\n=== Create New Survey ===");
         System.out.print("Enter survey title: ");
         String title = scanner.nextLine();
+        if(StringUtils.isBlank(title)) {
+            System.out.println("Title cannot be blank.");
+            return;
+        }
 
         // Check if survey with this title already exists
         if (manager.getSurveyByTitle(title) != null) {
@@ -95,10 +100,19 @@ public class Main {
         }
 
         System.out.print("Enter survey topic: ");
+
         String topic = scanner.nextLine();
+        if(StringUtils.isBlank(topic)) {
+            System.out.println("Topic cannot be blank.");
+            return;
+        }
 
         System.out.print("Enter survey description: ");
         String description = scanner.nextLine();
+        if(StringUtils.isBlank(description)) {
+            System.out.println("Description cannot be blank.");
+            return;
+        }
 
         Survey survey = new Survey(title, topic, description);
 
